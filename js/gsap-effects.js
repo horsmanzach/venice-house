@@ -1,6 +1,5 @@
 //======Text Effect on Scroll========
 
-
 gsap.registerPlugin(ScrollTrigger)
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -48,139 +47,82 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+//==========Card Effect with Responsive Mobile Safari Fixes
 
-//==========Card Effect
-
-
-//==========Card Effect with Mobile Safari Fixes
-gsap.registerPlugin(ScrollTrigger);
-
-// Fix viewport height issues on mobile
-function setViewportHeight() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-}
-
-// Mobile detection
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+gsap.registerPlugin(ScrollTrigger)
 
 window.addEventListener("DOMContentLoaded", () => {
-    // Set viewport height
-    setViewportHeight();
 
-    /* LENIS SMOOTH SCROLL (OPTIONAL) - Disabled on mobile */
-    if (!isMobile) {
-        lenis = new Lenis({
-            autoRaf: true,
-        });
-    }
-
-    // Force ScrollTrigger to use native scroll on mobile
-    if (isMobile) {
-        ScrollTrigger.config({
-            autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
-            ignoreMobileResize: true
-        });
-    }
+    /* LENIS SMOOTH SCROLL (OPTIONAL) */
+    lenis = new Lenis({
+        autoRaf: true,
+    })
+    /* LENIS SMOOTH SCROLL (OPTIONAL) */
 
     gsap.to('.scroll', {
-        autoAlpha: 0,
-        duration: 0.2,
+        autoAlpha:0,
+        duration:0.2,
         scrollTrigger: {
-            trigger: '.mwg_effect003',
-            start: 'top top',
-            end: 'top top-=1',
+            trigger:'.mwg_effect003',
+            start:'top top',
+            end:'top top-=1',
             toggleActions: "play none reverse none"
         }
-    });
+    })
 
-    const pinHeight = document.querySelector('.mwg_effect003 .pin-height');
-    const circles = document.querySelectorAll('.circle');
+    const pinHeight = document.querySelector('.mwg_effect003 .pin-height')
+    const circles = document.querySelectorAll('.circle')
 
     gsap.fromTo('.mwg_effect003 .circles', {
-        y: '5%'
+        y: '5%' // The `circles` div starts at 5% of its height on the y-axis
     }, {
-        y: '-5%',
+        y: '-5%', // And ends at -5% of its height on the y-axis
         ease: 'none',
         scrollTrigger: {
-            trigger: pinHeight,
+            trigger: pinHeight, // Monitor the position of pin-height
             start: 'top top',
             end: 'bottom bottom',
-            pin: '.mwg_effect003 .container',
-            scrub: true,
-            invalidateOnRefresh: true, // Important for mobile
-            refreshPriority: -1 // Ensure this runs after layout
+            pin: '.mwg_effect003 .container', // Pin the container in place
+            scrub: true // Progress linked to scrolling
         }
-    });
+    })
 
     // Calculate half of the fan range
-    let angle = 6;
-    let halfRange = (circles.length - 1) * angle / 2;
-    let rot = -halfRange;
+    let angle = 6; 
+        halfRange = (circles.length - 1) * angle / 2,
+        rot = -halfRange
 
-    // Use a function to get accurate height on mobile
-    const getDistPerCard = () => {
-        const pinHeightValue = pinHeight.clientHeight || pinHeight.offsetHeight;
-        const windowHeight = window.innerHeight;
-        return (pinHeightValue - windowHeight) / circles.length;
-    };
-
-    circles.forEach((circle, index) => {
+    const distPerCard = (pinHeight.clientHeight - window.innerHeight) / circles.length
+        
+    circles.forEach( (circle, index) => {
+        
         gsap.to(circle, {
-            rotation: rot,
+            rotation: rot, // The circle starts at 0° and ends at the `rot` value
             ease: 'power1.out',
             scrollTrigger: {
-                trigger: pinHeight,
-                start: () => `top top-=${getDistPerCard() * index}`,
-                end: () => `+=${getDistPerCard()}`,
-                scrub: true,
-                invalidateOnRefresh: true
-            }
-        });
-
+                trigger: pinHeight, // Monitor the position of pin-height
+                // Animation starts at distPerCard * the index of the card
+                start: 'top top-=' + (distPerCard) * index,
+                // And lasts exactly for distPerCard
+                end: '+=' + (distPerCard),
+                scrub: true // Progress linked to scrolling
+            }  
+        })
         gsap.to(circle.querySelector('.card'), {
+            // Optional: Apply 'rot' to the card to enhance the rotation effect
             rotation: rot,
-            y: '-50%',
+            y: '-50%', // Positions the card in the center of the viewport
             ease: 'power1.out',
             scrollTrigger: {
-                trigger: pinHeight,
-                start: () => `top top-=${getDistPerCard() * index}`,
-                end: () => `+=${getDistPerCard()}`,
-                scrub: true,
-                invalidateOnRefresh: true
-            }
-        });
+                trigger: pinHeight, // Monitor the position of pin-height
+                // Animation starts at distPerCard * the index of the card
+                start: 'top top-=' + (distPerCard) * index,
+                // And lasts exactly for distPerCard
+                end: '+=' + (distPerCard),
+                scrub: true // Progress linked to scrolling
+            }  
+        })
 
-        rot += angle;
-    });
-
-    // Refresh ScrollTrigger after everything is set up
-    setTimeout(() => {
-        ScrollTrigger.refresh();
-    }, 100);
-});
-
-// Handle viewport changes
-window.addEventListener('resize', () => {
-    setViewportHeight();
-    ScrollTrigger.refresh();
-});
-
-// Handle orientation changes on mobile
-window.addEventListener('orientationchange', () => {
-    setTimeout(() => {
-        setViewportHeight();
-        ScrollTrigger.refresh();
-    }, 500);
-});
-
-// Optional: Add scroll event listener for debugging on mobile
-if (isMobile) {
-    let debugCount = 0;
-    window.addEventListener('scroll', () => {
-        debugCount++;
-        if (debugCount % 10 === 0) { // Log every 10th scroll event
-            console.log('Scroll position:', window.pageYOffset);
-        }
-    });
-}
+        rot += angle
+    })
+})
