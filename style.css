@@ -1,0 +1,248 @@
+/* ========================================
+   MWG_EFFECT015 - TEXT EFFECT STYLES
+   ======================================== */
+
+/* Desktop Text Effect Styles */
+.mwg_effect015 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8vw;
+    padding: 5vh 0 8vw;
+}
+
+.mwg_effect015 .text {
+    width: 34vw;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.mwg_effect015 .container p {
+    text-align: center;
+    font: 500 normal 8vw/0.9 'Lato', sans-serif;
+    letter-spacing: -0.05em;
+}
+
+.mwg_effect015 p span {
+    display: inline-block !important;
+}
+
+.mwg_effect015 .word {
+    line-height: 0.8;
+    position: relative;
+    text-transform: uppercase;
+    clip-path: polygon(0 2%, 0 98%, 100% 98%, 100% 2%) !important;
+}
+
+.mwg_effect015 .word-hidden {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    transform: translate(0, -100%);
+}
+
+/* Mobile Optimization for Text Effect */
+@media only screen and (max-width: 480px) {
+    .mwg_effect015 .container p {
+        font-size: 15vw;
+    }
+    
+    .mwg_effect015 .text {
+        width: 99vw;
+    }
+    
+    .mwg_effect015 .container {
+        width: 99% !important;
+    }
+}
+
+/* ========================================
+   MWG_EFFECT003 - CARD EFFECT STYLES
+   ======================================== */
+
+:root {
+    --vh: 1vh;
+}
+
+/* Desktop Card Effect Styles */
+.mwg_effect003 {
+    position: relative;
+    overflow: hidden;
+}
+
+.mwg_effect003 .header {
+    position: absolute;
+    width: 100%;
+    display: block;
+    text-align: center !Important;
+    text-transform: uppercase;
+}
+
+.mwg_effect003 .header h2 {
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-size: 4.6vw;
+    text-align: center;
+    line-height: 1em;
+}
+
+.mwg_effect003 .pin-height {
+    height: 550vh;
+}
+
+.mwg_effect003 .container {
+    position: relative;
+    height: 100vh;
+}
+
+.mwg_effect003 .circles {
+    height: 10%;
+  padding-bottom: 10% !important;
+}
+
+.mwg_effect003 .circle {
+    width: 250vw;
+    height: 250vw;
+    border-radius: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    will-change: transform;
+    transform: translate(-50%, 55vh) translateZ(0);
+    backface-visibility: hidden;
+}
+
+.mwg_effect003 .card {
+    width: 25vw;
+    aspect-ratio: 0.75;
+    border-radius: 0.7vw;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 55vh);
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1vw;
+    transform: translate(-50%, 55vh) translateZ(0);
+    backface-visibility: hidden;
+}
+
+.mwg_effect003 .card p {
+    font-size: 1.4vw;
+    line-height: 0.94;
+}
+
+.mwg_effect003 .card h5 {
+    font-size: 1.8vw;
+    line-height: 1;
+    margin-bottom: 2em;
+    font-weight: 700;
+}
+
+.mwg_effect003 .card .aka {
+    display: inline-block;
+    font-size: 1.5vw;
+    border: 0.15em solid currentColor;
+    border-radius: 100%;
+    padding: 0.30em 1em 0.15em;
+    margin: 0 0 3em;
+}
+
+.mwg_effect003 .card h2 {
+    font: 800 normal 3.6vw / 0.8 'Lato', sans-serif;
+    letter-spacing: -0.03em;
+}
+
+/* Card Color Schemes */
+.mwg_effect003 .circle:nth-child(1) .card {
+    background-color: #FC4C3B;
+    color: #702626;
+}
+
+.mwg_effect003 .circle:nth-child(2) .card {
+    background-color: #FF8308;
+    color: #FFDF40;
+}
+
+.mwg_effect003 .circle:nth-child(3) .card {
+    background-color: #DEDA8D;
+    color: #3D4331;
+}
+
+.mwg_effect003 .circle:nth-child(4) .card {
+    background-color: #71CFA3;
+    color: #184739;
+}
+
+.mwg_effect003 .circle:nth-child(5) .card {
+    background-color: #C4EF7A;
+    color: #184739;
+}
+ 
+.mwg_effect003 .circle:nth-child(6) .card {
+    background-color: #BCEFFF;
+    color: #0C3FD3;
+}
+
+/* Mobile Optimization for Card Effect */ 
+
+/* Mobile viewport height fix (980px and below) */
+@media only screen and (max-width: 980px) {
+    :root {
+        --vh: var(--vh, 1vh);
+    }
+    
+    .mwg_effect003 .container {
+        height: calc(var(--vh, 1vh) * 100);
+    }
+}
+
+/* Tablet styles (768px and below) */
+@media only screen and (max-width: 768px) {
+    .mwg_effect003 .circle {
+        transform: translate(-50%, 0) translate3d(0, 0, 0);
+    }
+    
+    .mwg_effect003 .card {
+        transform: translate(-50%, 55vh) translate3d(0, 0, 0);
+    }
+}
+
+/* Mobile styles (767px and below) */
+@media only screen and (max-width: 767px) {
+    .mwg_effect003 .header h2 {
+        font-size: 8vw !important;
+    }
+    
+    .mwg_effect003 .pin-height {
+        height: 250vh !important;
+    }
+    
+    .mwg_effect003 .card {
+        width: 45vw !important;
+    }
+    
+    .mwg_effect003 .card h2 {
+        font-size: 8vw !important;
+    }
+    
+    .mwg_effect003 .card .aka {
+        font-size: 4vw !important;
+    }
+    
+    .mwg_effect003 .card p {
+        font-size: 3.5vw !important;
+    }
+    
+    .mwg_effect003 .card h5 {
+        font-size: 4vw !important;
+        margin-bottom: 1em !important;
+    }
+}
+
