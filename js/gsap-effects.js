@@ -111,7 +111,7 @@ window.addEventListener("DOMContentLoaded", () => {
         gsap.to(circle.querySelector('.card'), {
             // Optional: Apply 'rot' to the card to enhance the rotation effect
             rotation: rot,
-            y: '-50%', // Positions the card in the center of the viewport
+            y: '-65%', // Positions the card in the center of the viewport
             ease: 'power1.out',
             scrollTrigger: {
                 trigger: pinHeight, // Monitor the position of pin-height
