@@ -194,7 +194,7 @@
 
 
 
-
+/*=====Large Card Effects=======*/
 
 .mwg_effect031 {
     padding: 10vh 0;    position: relative;    overflow: hidden;}
@@ -213,11 +213,45 @@
 .mwg_effect031 .bottom {
     display: flex;  flex-direction: column;    justify-content: space-between;}
 
-@media only screen and (max-width: 980px) {
-  .mwg_effect031 .bottom {
-     display: flex !important;    justify-content: space-between !Important;    align-items: flex-end !Important;  }
-  .mwg_effect031 .bottom > div:last-child {
-    display: flex !Important;    font: 500 normal 10.5vw / 0.9 'Lato', sans-serif !Important;    letter-spacing: -0.06em !Important;    gap: 25px !Important;}
+@media only screen and (max-width: 480px) {
+     .mwg_effect031 .content {
+        padding: 15px !Important;
+        justify-content: initial !Important;
+    }
+    .mwg_effect031 .bottom {
+        margin: 15px 0 0 !important;
+        flex-direction: column !Important;
+        gap: 15px !Important;
+    }
+    .mwg_effect031 .text {
+        order: 2 !Important;
+        font-size: 16px !Important;
+        width: 100% !Important;
+    }
+    .mwg_effect031 .text p {
+        padding-bottom: 0.2em !Important;
+    }
+  .mwg_effect031 .num {
+    position: absolute !Important;
+    top: 5%;
+    color: #fff !Important;
+    right: 5%;
+    background: black !Important;
+    padding: 20px !Important;
+    border-radius: 10px !Important;
+  }
+    .mwg_effect031 .bottom img {
+        width: 100% !Important;
+        max-height: 210px !Important;
+        aspect-ratio: 1 !Important;
+        object-fit: cover !important;
+      order: 1 !Important;
+    }
+  .mwg_effect031 .bottom > div:last-child{
+   position: relative !Important; 
+    bottom: 0 !Important;
+    right: 0 !important;
+  }
 }
 
 .mwg_effect031 .bottom img {
@@ -227,7 +261,9 @@
     width: 25vw;    display: flex;    align-items: flex-end;    font: 500 normal 1.6vw / 1.1 'Lato', sans-serif;    letter-spacing: -0.03em;}
 
 .mwg_effect031 .bottom > div:last-child {
-    position: absolute;    bottom: 7%;    right: 2%;    display: flex;    font: 500 normal 7.8vw / 0.9 'Lato', sans-serif;    letter-spacing: -0.06em;    gap: 25px;    align-items: flex-end;}
+   position: absolute;    bottom: 7%;    right: 2%;  display: flex;    font: 500 normal 7.8vw / 0.9 'Lato', sans-serif;    letter-spacing: -0.06em;    gap: 25px;    align-items: flex-end; 
+
+}
 
 .mwg_effect031 .bottom img {
     width: 25vw;    border-radius: 0.02em;}
